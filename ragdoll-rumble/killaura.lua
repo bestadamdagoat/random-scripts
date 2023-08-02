@@ -36,10 +36,10 @@ end
 local function updateNearestPlayer()
     wait(1)
     local nearestPlayer = findNearestPlayerWithLineOfSight()
-    if nearestPlayer then
+    if nearestPlayer  then
         local nearestUsername = nearestPlayer and nearestPlayer.Name
         local nearestDisplayName = nearestPlayer.DisplayName
-        print("Nearest player Display Name: " .. nearestDisplayName)
+        game.Players.LocalPlayer.Character:PivotTo(game:GetService("Players"):WaitForChild(nearestUsername).Character.Head.CFrame + Vector3.new(0,-1,7))
         local args = {
             [1] = game:GetService("Players"):WaitForChild(nearestUsername)
         }
