@@ -45,7 +45,9 @@ local function updateNearestPlayer()
         }
         game:GetService("ReplicatedStorage"):WaitForChild("_objects"):WaitForChild("Tools"):WaitForChild("Hammer"):WaitForChild("Hit"):FireServer(unpack(args))
     else
-        print("No player nearby")
+        if game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character:PivotTo(workspace.Map.TrapsThatDontMove.Xarusa.HoodedAssassin.Handle.CFrame+ Vector3.new(0,7,0))
+        end
     end
 end
 
