@@ -1,10 +1,33 @@
-if true then
-    print("DO NOT USE, CURRENTLY BANS YOU")
-    return
-end
-
 local player = game.Players.LocalPlayer
 local humanoidRootPart
+local remotePath = game:GetService("ReplicatedStorage")._objects.Tools.Hammer
+local ignoredRemotes = {"Hit"}
+local lastExecutionTime = 0
+
+local function findRemoteInPath(path)
+    for _, descendant in ipairs(path:GetDescendants()) do
+        if descendant:IsA("RemoteEvent") or descendant:IsA("RemoteFunction") then
+            local isIgnored = false
+            for _, ignoredName in ipairs(ignoredRemotes) do
+                if descendant.Name == ignoredName then
+                    isIgnored = true
+                    break
+                end
+            end
+
+            if not isIgnored then
+                return descendant
+            end
+        end
+    end
+end
+
+local remote = findRemoteInPath(remotePath)
+if remote then
+    print("Found remote:", remote.Name)
+else
+    print("No valid remote found in the specified path.")
+end
 
 local function distance(pos1, pos2)
     return (pos1 - pos2).magnitude
@@ -39,18 +62,23 @@ local function findNearestPlayerWithLineOfSight()
 end
 
 local function updateNearestPlayer()
-    wait(1)
-    local nearestPlayer = findNearestPlayerWithLineOfSight()
-    if nearestPlayer then
-        local nearestUsername = nearestPlayer and nearestPlayer.Name
-        local nearestDisplayName = nearestPlayer.DisplayName
-        print("Nearest player Display Name: " .. nearestDisplayName)
-        local args = {
-            [1] = game:GetService("Players"):WaitForChild(nearestUsername)
-        }
-        game:GetService("ReplicatedStorage"):WaitForChild("_objects"):WaitForChild("Tools"):WaitForChild("Hammer"):WaitForChild("Hit"):FireServer(unpack(args))
-    else
-        print("No player nearby")
+    wait(0.00001)
+    local currentTime = tick()
+    if currentTime - lastExecutionTime >= 0.3 then
+        lastExecutionTime = currentTime
+
+        local nearestPlayer = findNearestPlayerWithLineOfSight()
+        if nearestPlayer then
+            local nearestUsername = nearestPlayer and nearestPlayer.Name
+            local nearestDisplayName = nearestPlayer.DisplayName
+            print("Nearest player Display Name: " .. nearestDisplayName)
+            local args = {
+                [1] = game:GetService("Players"):WaitForChild(nearestUsername)
+            }
+            remote:FireServer(unpack(args))
+        else
+            print("No player nearby")
+        end
     end
 end
 
