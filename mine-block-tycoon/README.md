@@ -10,8 +10,10 @@ Auto Merge Blocks:
 loadstring(game:HttpGet('https://raw.githubusercontent.com/bestadamdagoat/random-scripts/main/mine-block-tycoon/automerge.lua'))()
 ```
 
-Fast Purchase Droppers (Spam this to mass purchase droppers):
+Fast Purchase Droppers:
 
 ```lua
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("BuyDropper"):InvokeServer()
+getgenv().doscript = true
+-- set to false to disable fast purchase
+loadstring(game:HttpGet('https://raw.githubusercontent.com/bestadamdagoat/random-scripts/main/mine-block-tycoon/fastpurchase.lua'))()
 ```
