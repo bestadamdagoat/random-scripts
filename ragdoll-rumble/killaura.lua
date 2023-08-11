@@ -1,3 +1,8 @@
+if true then
+    print("DO NOT USE, CURRENTLY BANS YOU")
+    return
+end
+
 local player = game.Players.LocalPlayer
 local humanoidRootPart
 local remotePath = game:GetService("ReplicatedStorage")._objects.Tools.Hammer
