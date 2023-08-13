@@ -7,7 +7,7 @@ Kill Aura
 loadstring(game:HttpGet('https://raw.githubusercontent.com/bestadamdagoat/random-scripts/main/ragdoll-rumble/killaura.lua'))()
 ```
 
-Kill Aura with Auto TP
+Kill Aura with Auto TP (currently depricated, do not use)
 ```lua
 loadstring(game:HttpGet('https://raw.githubusercontent.com/bestadamdagoat/random-scripts/main/ragdoll-rumble/killauratp.lua'))()
 ```
