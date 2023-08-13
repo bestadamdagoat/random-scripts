@@ -4,6 +4,7 @@
 
 Kill Aura
 ```lua
+getgenv().maxRange = 30 -- change to any range
 loadstring(game:HttpGet('https://raw.githubusercontent.com/bestadamdagoat/random-scripts/main/ragdoll-rumble/killaura.lua'))()
 ```
 
