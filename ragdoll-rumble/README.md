@@ -4,7 +4,7 @@
 
 Kill Aura
 ```lua
-getgenv().maxRange = 30 -- change to any range
+getgenv().maxRange = 30 -- change to any range, 30 is what i found to be the most stable
 loadstring(game:HttpGet('https://raw.githubusercontent.com/bestadamdagoat/random-scripts/main/ragdoll-rumble/killaura.lua'))()
 ```
 
